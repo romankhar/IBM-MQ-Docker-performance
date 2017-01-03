@@ -33,26 +33,10 @@ DefaultQBufferSize=104857600
 DefaultPQBufferSize=104857600
 MAX_MSG_SIZE=104857600
 LOG_BUFFER_PAGES=4096
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 40 for performance test"
-#LOG_PRIMARY_FILES=40
-LOG_PRIMARY_FILES=3
+LOG_PRIMARY_FILES=40
 # For performance reasons it is not recommended to use secondary log files as they are dynamically allocated (not pre-formatted)
 LOG_SECONDARY_FILES=1
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-echo "TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ------------------- change this back to 65535 for performance test"
-LOG_FILE_PAGES=16384
-#LOG_FILE_PAGES=65535
+LOG_FILE_PAGES=65535
 MAX_HANDLES=50000
 MAX_DEPTH=50000
 FDMAX=1048576
