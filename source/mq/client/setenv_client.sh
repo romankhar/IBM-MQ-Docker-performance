@@ -9,17 +9,15 @@ echo_my "--> '$BASH_SOURCE' -->" $ECHO_DEBUG
 # IBM Performance Harness for JMS (load generation client) specific settings
 #########################################
 # How many times to repeat the test for each set of configuration settings (to use the average result of several runs)
-REPEATS=1
+REPEATS=3
 
 # How many concurrent client threads to start within a single JMSPerf.jar call
 # The value of CLIENT_THREADS will be calculated later by dividing NP_CLIENT_THREADS or CLIENT_THREADS by the number of servers, 
 # thus calculating number of threads for each server connection
 # for NON-PERSISTENT test
-#NP_CLIENT_THREADS=100
-NP_CLIENT_THREADS=1
+NP_CLIENT_THREADS=100
 # for PERSISTENT test
-#P_CLIENT_THREADS=100
-P_CLIENT_THREADS=1
+P_CLIENT_THREADS=100
 
 #########################################
 # Possible message sizes
@@ -37,19 +35,18 @@ LIST_OF_MSG_SIZES="$MSG_1024"
 # Types of tests to be run
 PERSISTENT=Persistent
 NON_PERSISTENT=NonPersistent
-#LIST_OF_TEST_TYPES="$NON_PERSISTENT $PERSISTENT"
-LIST_OF_TEST_TYPES="$NON_PERSISTENT"
+LIST_OF_TEST_TYPES="$NON_PERSISTENT $PERSISTENT"
+#LIST_OF_TEST_TYPES="$NON_PERSISTENT"
 
 #########################################
 # I want the total test time for requestor to be shorter than responder - the reason is that we are measuring performance based on requestor and hence responder needs to be already 
 # running before we even start requestor to avoid zero message rate - in fact, we could even leave responder running forever 
 # 24 hours = 86400
-REQUESTOR_RUN_TIME=30
+REQUESTOR_RUN_TIME=300
 
 #########################################
 # Test warmup time - this period wont be included in summary stats
-#WARM_UP_TIME=60
-WARM_UP_TIME=10
+WARM_UP_TIME=60
 
 #########################################
 # run responder for one week in background: 60 sec * 60 min * 24 hrs * 7 days
@@ -59,8 +56,7 @@ RESPONDER_RUN_TIME=604800
 # Please note that total number of queues is a multiple of MAX_Q_NUM and the number of servers (brokers)
 # For example, if we have 4 servers, then total number of queues is 4*MAX_Q_NUM*2 (where 2 is for request and reply queue)
 MIN_Q_NUM=1
-MAX_Q_NUM=2
-#MAX_Q_NUM=20
+MAX_Q_NUM=20
 
 #########################################
 # how many more responders to start relative to the number of requestors (for the equal number of requestors and responders set this to 1)
