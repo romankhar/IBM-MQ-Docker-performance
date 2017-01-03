@@ -1,0 +1,14 @@
+<insuranceClaims>
+<checkCoverage>
+<arg1>222398742342</arg1>
+<arg2>Test data</arg2>
+<arg4>
+<customerDetail>
+<accnum>234523456</accnum>
+<acctHist>
+<accDispNm>1293458235363</accDispNm>
+</acctHist>
+</customerDetail>
+</arg4>
+</checkCoverage>
+</insuranceClaims>
