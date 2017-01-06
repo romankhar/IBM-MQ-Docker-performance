@@ -158,13 +158,9 @@ start_mq_clients() {
 	# Start existing container without creating a new one
 	echo_my "Starting container ${RESPONDER_CONTAINER_NAME}..."
 	docker start ${RESPONDER_CONTAINER_NAME}
-	echo_my "Start recording CPU usage for responder..."
-	nohup docker stats ${RESPONDER_CONTAINER_NAME} > ${RESPONDER_CONTAINER_NAME}.${CPU_ACTIVITY_OUTPUT_FILE} 2> ${RESPONDER_CONTAINER_NAME}.${CPU_ACTIVITY_OUTPUT_FILE} < /dev/null &
 
 	echo_my "Starting container ${REQUESTOR_CONTAINER_NAME}..."
 	docker start ${REQUESTOR_CONTAINER_NAME}
-	echo_my "Start recording CPU usage for requestor..."
-	nohup docker stats ${REQUESTOR_CONTAINER_NAME} > ${REQUESTOR_CONTAINER_NAME}.${CPU_ACTIVITY_OUTPUT_FILE} 2> ${REQUESTOR_CONTAINER_NAME}.${CPU_ACTIVITY_OUTPUT_FILE} < /dev/null &
 }
 
 ######################## ######################################################
@@ -206,11 +202,11 @@ start_activity_recording() {
 	stop_activity_recording
 	echo_my "Start recording CPU and disk usage into the file '$CPU_ACTIVITY_OUTPUT_FILE'..."
 	local CONTAINERS="$RESPONDER_CONTAINER_NAME $REQUESTOR_CONTAINER_NAME"
+	
 	for ((i=0; i<${NUM_MQ_SERVERS}; i++)); do
 		CONTAINERS="$CONTAINERS $(setContainerName $i)"
 	done
-#	nohup docker stats $(docker ps --format={{.Names}}) > $CPU_ACTIVITY_OUTPUT_FILE 2> $CPU_ACTIVITY_OUTPUT_FILE < /dev/null &
-#	nohup docker stats -a > $CPU_ACTIVITY_OUTPUT_FILE 2> $CPU_ACTIVITY_OUTPUT_FILE < /dev/null &
+
 	echo_my "List of containers to be monitoried: '$CONTAINERS'"
 	nohup docker stats $CONTAINERS >> $CPU_ACTIVITY_OUTPUT_FILE 2> $CPU_ACTIVITY_OUTPUT_FILE < /dev/null &
 }
@@ -218,7 +214,7 @@ start_activity_recording() {
 ##############################################################################
 # MAIN
 ##############################################################################
-echo_my "Build latest Docker images with all updates (assuming vanilla images are current)..."
+echo_my "Build latest Docker images with all updates (assuming vanilla image is current once it was built using setup.sh)..."
 build_mq_server
 build_mq_client
 
@@ -245,7 +241,9 @@ for RUNTIME in $LIST_OF_SERVERS; do
 		run_mq_clients $RUNTIME $TEST
 		start_activity_recording
 		wait4requestors
-		# Copy the results to avoid them being removed when containers cleanup
+		# Copy the results from many containers into a single file to avoid them being removed when containers are cleaned.
+		# Obviously all client containers must be local to the machine where this script is run.
+		# It is not likely that  distributed multi-machine client setup is needed for a single machine MQ tests.
 		cat ${REQUESTOR_VOLUME}/${RESULTS_NAME} >> $GLOBAL_RESULTS_FILE
 	done  
 done
@@ -253,5 +251,5 @@ done
 stop_activity_recording
 echo "****************************************************************************"
 echo "   Success: '$BASH_SOURCE' script is complete."
-echo "   Test results can be found in ${REQUESTOR_VOLUME}/${RESULTS_NAME},"
+echo "   Test results can be found in ${REQUESTOR_VOLUME}/${RESULTS_NAME}"
 echo "****************************************************************************"
