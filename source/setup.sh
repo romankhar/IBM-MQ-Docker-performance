@@ -1,7 +1,9 @@
 #!/bin/bash
 #
 # DESCRIPTION:
-#	This script needs to be run once to prepare the host computer for tests. It is not necessar to run it again after reboots
+#	This script needs to be run once to prepare the host computer for tests. It is not necessary to run it again after reboots. 
+# All we do here is just build a base MQ Docker image for reuse in later stages of the project.
+# You only need to run it again if you need to upgrade to a new version of MQ or fixpack. This is usually done handful a times per year.
 #
 # AUTHOR:   	
 # 	Roman Kharkovski (http://advantage.ibm.com/about)
