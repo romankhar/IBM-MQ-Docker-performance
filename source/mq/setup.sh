@@ -11,9 +11,9 @@
 set -o nounset
 set -o errexit
 
-source setenv.sh
-source mq/client/setenv_client.sh
-source mq/build.sh
+source ../setenv.sh
+source client/setenv_client.sh
+source build.sh
 
 # Turn off Ubuntu firewall
 sudo ufw disable
